@@ -1,0 +1,19 @@
+{
+  "name": "ADCluster_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "7.13.0",
+    "nodemon": "2.0.6"
+  },
+  "scripts": {
+    "start": "node -r esm src",
+    "start:dev": "nodemon --watch src/ -r esm src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "8.2.0",
+    "esm": "3.2.25",
+    "koa": "2.13.0"
+  }
+}
