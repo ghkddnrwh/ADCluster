@@ -12,11 +12,14 @@
     "start:dev": "nodemon --watch src/ -r esm src/index.js"
   },
   "dependencies": {
+    "@hapi/joi": "17.1.1",
     "bcrypt": "5.0.0",
     "dotenv": "8.2.0",
     "esm": "3.2.25",
     "jsonwebtoken": "8.5.1",
     "koa": "2.13.0",
+    "koa-bodyparser": "4.3.0",
+    "koa-router": "10.0.0",
     "mongoose": "5.10.15"
   }
 }

@@ -20,6 +20,7 @@ UserSchema.methods.setPassword = async function (password) {
 
 UserSchema.methods.checkPassword = async function (password) {
   const result = await bcrypt.compare(password, this.hashedPassword);
+  return result;
 };
 
 UserSchema.methods.setNickname = function (nickname) {
@@ -37,7 +38,7 @@ UserSchema.methods.variationPoint = function (variation) {
 UserSchema.methods.generateToken = function () {
   const token = jwt.sign(
     {
-      _id: this.id,
+      _id: this._id,
       username: this.username,
     },
     process.env.JWT_SECRET,
@@ -49,8 +50,14 @@ UserSchema.methods.generateToken = function () {
   return token;
 };
 
-UserSchema.statics.findByUsername = function (username) {
-  return this.findOne({ username });
+UserSchema.methods.serialize = function () {
+  const data = this.toJSON();
+  delete data.hashedPassword;
+  return data;
+};
+
+UserSchema.statics.findByUsername = async function (username) {
+  return await this.findOne({ username });
 };
 
 const User = mongoose.model('User', UserSchema);
